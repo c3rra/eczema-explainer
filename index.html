@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eczema: how it actually works</title>
+<meta name="description" content="A plain-language explainer of the eczema mechanism, with the everyday version and the technical version side by side." />
+<meta name="color-scheme" content="light dark" />
+<meta property="og:title" content="Eczema: how it actually works" />
+<meta property="og:description" content="A plain-language explainer of the eczema mechanism, with the everyday version and the technical version side by side." />
+<meta property="og:type" content="article" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129521;</text></svg>" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -moz-text-size-adjust: none; -webkit-text-size-adjust: none; text-size-adjust: none; }
+  body { margin: 0; min-height: 100vh; }
+  h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
+  img, svg { max-width: 100%; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --paper:      #F3F0F1;
+    --surface:    #FFFFFF;
+    --surface-2:  #EBE6E8;
+    --ink:        #1C1A22;
+    --muted:      #6E6772;
+    --hairline:   #D9D2D6;
+
+    --brick:      #A64B33;
+    --brick-soft: #F0E2DC;
+    --science:    #2F5C6B;
+    --sci-soft:   #DFE9EC;
+    --signal:     #C41E5C;
+    --signal-soft:#F7DFE8;
+
+    --font-display: ui-sans-serif, -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 62ch;
+    --radius: 3px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #16141A;
+      --surface:    #201D25;
+      --surface-2:  #2A2630;
+      --ink:        #EDE9EC;
+      --muted:      #9F97A4;
+      --hairline:   #35303B;
+
+      --brick:      #D8815F;
+      --brick-soft: #3A2721;
+      --science:    #7FB9C9;
+      --sci-soft:   #1E2E34;
+      --signal:     #F0678A;
+      --signal-soft:#361B26;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #16141A;
+    --surface:    #201D25;
+    --surface-2:  #2A2630;
+    --ink:        #EDE9EC;
+    --muted:      #9F97A4;
+    --hairline:   #35303B;
+
+    --brick:      #D8815F;
+    --brick-soft: #3A2721;
+    --science:    #7FB9C9;
+    --sci-soft:   #1E2E34;
+    --signal:     #F0678A;
+    --signal-soft:#361B26;
+  }
+
+  :root[data-theme="light"] {
+    --paper:      #F3F0F1;
+    --surface:    #FFFFFF;
+    --surface-2:  #EBE6E8;
+    --ink:        #1C1A22;
+    --muted:      #6E6772;
+    --hairline:   #D9D2D6;
+
+    --brick:      #A64B33;
+    --brick-soft: #F0E2DC;
+    --science:    #2F5C6B;
+    --sci-soft:   #DFE9EC;
+    --signal:     #C41E5C;
+    --signal-soft:#F7DFE8;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.1rem, 4vw, 3rem) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .masthead h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .masthead h1 .quiet { color: var(--muted); font-weight: 500; display: block; }
+
+  .standfirst {
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    line-height: 1.5;
+    max-width: 46ch;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.6rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .key-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .swatch {
+    width: 1.05rem; height: 1.05rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .swatch.is-plain { background: var(--brick); }
+  .swatch.is-sci   { background: var(--science); }
+
+  /* ---------- section furniture ---------- */
+
+  .band { display: flex; flex-direction: column; gap: 1.6rem; }
+
+  .band-head { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .band-head h2 {
+    font-family: var(--font-display);
+    font-weight: 750;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    font-size: clamp(1.6rem, 4vw, 2.35rem);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .band-head p {
+    margin: 0;
+    max-width: var(--measure);
+    color: var(--muted);
+  }
+
+  /* ---------- the wall diagram ---------- */
+
+  .walls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .wall-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.4rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .wall-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .wall-card p { margin: 0; font-size: 0.95rem; color: var(--muted); }
+
+  .wall-card svg { width: 100%; height: auto; display: block; }
+
+  .brick-fill  { fill: var(--surface-2); }
+  .brick-line  { stroke: var(--hairline); stroke-width: 1; }
+  .mortar-good { fill: var(--brick); opacity: 0.9; }
+  .mortar-poor { fill: var(--brick); opacity: 0.28; }
+  .flow-out    { stroke: var(--science); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+  .flow-in     { stroke: var(--signal); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+  .blocked     { stroke: var(--muted); stroke-width: 2.2; fill: none; stroke-linecap: round; }
+  .dot-in      { fill: var(--signal); }
+  .dot-out     { fill: var(--science); }
+  .svg-label   {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: var(--muted);
+  }
+
+  /* ---------- paired register rows ---------- */
+
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .stage-head {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .stage-tag {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.55rem;
+    border-radius: 2px;
+    background: var(--surface-2);
+    color: var(--muted);
+  }
+
+  .stage-head h3 {
+    font-family: var(--font-display);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.25rem, 3vw, 1.7rem);
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  .panel {
+    border-radius: var(--radius);
+    padding: 1.25rem 1.35rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    min-width: 0;
+  }
+
+  .panel-plain { background: var(--brick-soft); }
+  .panel-sci   { background: var(--sci-soft); }
+
+  .panel-label {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .panel-plain .panel-label { color: var(--brick); }
+  .panel-sci   .panel-label { color: var(--science); }
+
+  .panel p { margin: 0; font-size: 0.97rem; }
+  .panel p + p { margin-top: 0.15rem; }
+
+  .panel strong { font-weight: 700; }
+  .panel-plain strong { color: var(--brick); }
+  .panel-sci   strong { color: var(--science); }
+
+  .panel em { font-style: italic; }
+
+  @media (max-width: 620px) {
+    .stage { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* ---------- glossary ---------- */
+
+  .glossary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .gloss-item {
+    background: var(--surface);
+    padding: 1.1rem 1.2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .gloss-term {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin: 0;
+  }
+
+  .gloss-def { margin: 0; font-size: 0.93rem; line-height: 1.5; }
+  .gloss-def .lit { color: var(--muted); font-style: italic; }
+
+  /* ---------- the loop ---------- */
+
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (max-width: 720px) {
+    .loop-wrap { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .loop-svg { width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto; }
+
+  .node-fill  { fill: var(--surface); stroke: var(--brick); stroke-width: 1.5; }
+  .node-text  { font-family: var(--font-display); font-size: 11px; font-weight: 650; fill: var(--ink); }
+  .arc        { stroke: var(--brick); stroke-width: 2; fill: none; }
+
+  .loop-note {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .loop-note p { margin: 0; max-width: 42ch; }
+  .loop-note .pull {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--brick);
+    text-wrap: balance;
+  }
+
+  /* ---------- itch ---------- */
+
+  .itch {
+    background: var(--signal-soft);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 2.4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  .itch h2 {
+    font-family: var(--font-display);
+    font-weight: 750;
+    letter-spacing: -0.025em;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    margin: 0;
+    color: var(--signal);
+    text-wrap: balance;
+  }
+
+  .itch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.3rem;
+  }
+
+  .itch-grid h4 {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin: 0 0 0.45rem;
+  }
+
+  .itch-grid p { margin: 0; font-size: 0.96rem; }
+
+  .itch-foot {
+    font-size: 1.02rem;
+    margin: 0;
+    padding-top: 1.1rem;
+    border-top: 1px solid color-mix(in srgb, var(--signal) 25%, transparent);
+    max-width: 58ch;
+  }
+
+  /* ---------- treatment table ---------- */
+
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+    font-size: 0.95rem;
+  }
+
+  thead th {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+    text-align: left;
+    padding: 0 0.9rem 0.7rem 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  tbody td {
+    padding: 0.85rem 0.9rem 0.85rem 0;
+    border-bottom: 1px solid var(--hairline);
+    vertical-align: top;
+  }
+
+  tbody tr td:first-child { font-weight: 600; width: 34%; }
+  tbody tr td:last-child { color: var(--muted); padding-right: 0; }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.45rem;
+    border-radius: 2px;
+    background: var(--surface-2);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ---------- closer ---------- */
+
+  .closer {
+    border-top: 2px solid var(--ink);
+    padding-top: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .closer .sentence {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.18;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    margin: 0;
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+
+  .closer .sentence .hl { color: var(--brick); }
+
+  .closer .tail { margin: 0; color: var(--muted); max-width: var(--measure); font-size: 0.95rem; }
+
+  footer {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  footer .byline {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  footer .byline a {
+    color: var(--brick);
+    text-decoration: none;
+    border-bottom: 1.5px solid color-mix(in srgb, var(--brick) 40%, transparent);
+    padding-bottom: 1px;
+    transition: border-color 0.15s ease;
+  }
+
+  footer .byline a:hover { border-bottom-color: var(--brick); }
+
+  footer .disclaimer {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+    max-width: var(--measure);
+  }
+
+  a { color: var(--brick); }
+  a:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .stage, .wall-card, .itch { animation: rise 0.5s ease-out both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
+</style>
+
+<div class="shell">
+
+  <header class="masthead">
+    <p class="eyebrow">Atopic dermatitis / a plain-language explainer</p>
+    <h1>How eczema<br />actually works<span class="quiet">Two versions of the same story</span></h1>
+    <p class="standfirst">Eczema is not a rash that happens to itch. It is a damaged wall, an immune system overreacting to what comes through it, and an itch that rewires the nerves underneath.</p>
+    <div class="key">
+      <span class="key-item"><span class="swatch is-plain"></span> In plain terms</span>
+      <span class="key-item"><span class="swatch is-sci"></span> The science</span>
+    </div>
+  </header>
+
+  <!-- ================= THE WALL ================= -->
+  <section class="band">
+    <div class="band-head">
+      <p class="eyebrow">Start here</p>
+      <h2>Your skin is built like a brick wall</h2>
+      <p>Flat dead skin cells are the bricks. A greasy mortar sits between them. The wall has one job: keep water in, keep the world out.</p>
+    </div>
+
+    <div class="walls">
+
+      <article class="wall-card">
+        <h3>A healthy wall</h3>
+        <svg viewBox="0 0 200 150" role="img" aria-label="Diagram of a healthy skin barrier: neat bricks with thick mortar, water held inside, irritants bouncing off the surface">
+          <g class="brick-line">
+            <rect class="mortar-good" x="0" y="0" width="200" height="132" />
+            <rect class="brick-fill" x="4"   y="4"   width="44" height="26" />
+            <rect class="brick-fill" x="53"  y="4"   width="44" height="26" />
+            <rect class="brick-fill" x="102" y="4"   width="44" height="26" />
+            <rect class="brick-fill" x="151" y="4"   width="44" height="26" />
+            <rect class="brick-fill" x="-20" y="35"  width="44" height="26" />
+            <rect class="brick-fill" x="29"  y="35"  width="44" height="26" />
+            <rect class="brick-fill" x="78"  y="35"  width="44" height="26" />
+            <rect class="brick-fill" x="127" y="35"  width="44" height="26" />
+            <rect class="brick-fill" x="176" y="35"  width="44" height="26" />
+            <rect class="brick-fill" x="4"   y="66"  width="44" height="26" />
+            <rect class="brick-fill" x="53"  y="66"  width="44" height="26" />
+            <rect class="brick-fill" x="102" y="66"  width="44" height="26" />
+            <rect class="brick-fill" x="151" y="66"  width="44" height="26" />
+            <rect class="brick-fill" x="-20" y="97"  width="44" height="26" />
+            <rect class="brick-fill" x="29"  y="97"  width="44" height="26" />
+            <rect class="brick-fill" x="78"  y="97"  width="44" height="26" />
+            <rect class="brick-fill" x="127" y="97"  width="44" height="26" />
+            <rect class="brick-fill" x="176" y="97"  width="44" height="26" />
+          </g>
+          <circle class="dot-in" cx="40" cy="140" r="3.5" />
+          <circle class="dot-in" cx="120" cy="143" r="3" />
+          <path class="blocked" d="M40 136 L40 128" />
+          <path class="blocked" d="M36 130 L44 130" />
+          <path class="flow-out" d="M165 118 L165 138" opacity="0.35" />
+          <text class="svg-label" x="4" y="147">Water stays in</text>
+        </svg>
+        <p>Thick, even mortar. Nothing gets through in either direction.</p>
+      </article>
+
+      <article class="wall-card">
+        <h3>An eczema wall</h3>
+        <svg viewBox="0 0 200 150" role="img" aria-label="Diagram of an eczema skin barrier: irregular bricks with thin, broken mortar and gaps, water escaping outward and irritants passing inward">
+          <g class="brick-line">
+            <rect class="mortar-poor" x="0" y="0" width="200" height="132" />
+            <rect class="brick-fill" x="6"   y="5"   width="40" height="24" />
+            <rect class="brick-fill" x="58"  y="3"   width="47" height="27" />
+            <rect class="brick-fill" x="112" y="6"   width="36" height="23" />
+            <rect class="brick-fill" x="157" y="4"   width="41" height="26" />
+            <rect class="brick-fill" x="-18" y="36"  width="42" height="25" />
+            <rect class="brick-fill" x="32"  y="34"  width="38" height="27" />
+            <rect class="brick-fill" x="122" y="37"  width="45" height="24" />
+            <rect class="brick-fill" x="175" y="35"  width="40" height="26" />
+            <rect class="brick-fill" x="7"   y="68"  width="46" height="25" />
+            <rect class="brick-fill" x="61"  y="66"  width="38" height="27" />
+            <rect class="brick-fill" x="107" y="69"  width="42" height="23" />
+            <rect class="brick-fill" x="158" y="67"  width="39" height="26" />
+            <rect class="brick-fill" x="-16" y="99"  width="44" height="25" />
+            <rect class="brick-fill" x="36"  y="98"  width="40" height="26" />
+            <rect class="brick-fill" x="84"  y="100" width="43" height="24" />
+            <rect class="brick-fill" x="136" y="97"  width="37" height="27" />
+            <rect class="brick-fill" x="181" y="99"  width="42" height="25" />
+          </g>
+          <path class="flow-out" d="M88 46 L88 12" />
+          <path class="flow-out" d="M83 18 L88 11 L93 18" />
+          <path class="flow-in" d="M172 120 L172 84" />
+          <path class="flow-in" d="M167 91 L172 84 L177 91" />
+          <circle class="dot-in" cx="172" cy="130" r="3.5" />
+          <circle class="dot-in" cx="152" cy="141" r="3" />
+          <circle class="dot-in" cx="188" cy="142" r="2.5" />
+          <circle class="dot-out" cx="88" cy="60" r="3" opacity="0.6" />
+          <text class="svg-label" x="4" y="147">Irritants get in, water gets out</text>
+        </svg>
+        <p>Thin, patchy mortar and a missing brick. The wall leaks both ways.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= GLOSSARY ================= -->
+  <section class="band">
+    <div class="band-head">
+      <p class="eyebrow">The five words that do all the work</p>
+      <h2>Jargon, translated once</h2>
+    </div>
+
+    <div class="glossary">
+      <div class="gloss-item">
+        <p class="gloss-term">Lipids</p>
+        <p class="gloss-def">Fats and oils. That is the whole definition. The mortar between your skin bricks is made of fat. <span class="lit">Ceramides, cholesterol and fatty acids are three kinds of it.</span></p>
+      </div>
+      <div class="gloss-item">
+        <p class="gloss-term">Filaggrin</p>
+        <p class="gloss-def">A protein with two jobs: squash skin cells flat so they stack like proper bricks, and break down into your skin's own built-in moisturiser. <span class="lit">Some people inherit a faulty version.</span></p>
+      </div>
+      <div class="gloss-item">
+        <p class="gloss-term">Cytokine</p>
+        <p class="gloss-def">A chemical message between immune cells. Think of it as a text message. One cell shouts "intruder", others respond. <span class="lit">That is all a cytokine is.</span></p>
+      </div>
+      <div class="gloss-item">
+        <p class="gloss-term">IL-4, IL-13, IL-31</p>
+        <p class="gloss-def">Names of specific messages. IL stands for interleukin, meaning "between white blood cells". IL-4 and IL-13 say inflame. IL-31 says itch. <span class="lit">Numbered because there are dozens.</span></p>
+      </div>
+      <div class="gloss-item">
+        <p class="gloss-term">Type 2 inflammation</p>
+        <p class="gloss-def">One particular mode of immune response, built for parasites, which misfires in allergy. <span class="lit">Eczema, asthma and hay fever are the same misfire in skin, lungs and nose.</span></p>
+      </div>
+      <div class="gloss-item">
+        <p class="gloss-term">Staph</p>
+        <p class="gloss-def">Short for <em>Staphylococcus aureus</em>, a common bacterium. Plenty of healthy people carry it. <span class="lit">On damaged skin it takes over and fuels the fire.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE THREE STAGES ================= -->
+  <section class="band">
+    <div class="band-head">
+      <p class="eyebrow">Three things go wrong at once</p>
+      <h2>Not a sequence. A cycle that feeds itself.</h2>
+      <p>Each one is written twice below: the plain version on the left, the technical version on the right. Same fact, two registers.</p>
+    </div>
+
+    <!-- stage 1 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="stage-tag">Barrier</span>
+        <h3>The wall leaks</h3>
+      </div>
+      <div class="panel panel-plain">
+        <p class="panel-label">In plain terms</p>
+        <p>The <strong>mortar</strong> holding your skin bricks together is made of fat, and in eczema it is thin and badly made.</p>
+        <p>Some people are born with a faulty <strong>filaggrin</strong> gene. Their bricks are the wrong shape and they make less of their own moisturiser. It is genetic and it runs in families.</p>
+        <p>The result: water leaks out from the inside, and dust, soap and bacteria get in from the outside.</p>
+      </div>
+      <div class="panel panel-sci">
+        <p class="panel-label">The science</p>
+        <p>Your outermost skin layer is <strong>corneocytes</strong> held together by <strong>lipids</strong> (ceramides, cholesterol, fatty acids). In eczema that mortar is thin and disorganised.</p>
+        <p>Many people carry loss-of-function variants in <strong>filaggrin</strong>, the protein that helps flatten those cells and produce natural moisturising factor.</p>
+        <p>Water escapes outward, irritants and allergens get in.</p>
+      </div>
+    </div>
+
+    <!-- stage 2 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="stage-tag">Immune</span>
+        <h3>The alarm overreacts</h3>
+      </div>
+      <div class="panel panel-plain">
+        <p class="panel-label">In plain terms</p>
+        <p>Your immune system is the security team. When something gets through the wall, it sends out <strong>chemical messages</strong> that redden and swell the area.</p>
+        <p>Here is the nasty bit. Those same messages also <strong>switch off your skin's fat production</strong>.</p>
+        <p>So the wall leaks, stuff gets in, the alarm fires, and the alarm stops you making mortar. The wall gets weaker still.</p>
+      </div>
+      <div class="panel panel-sci">
+        <p class="panel-label">The science</p>
+        <p>What gets in triggers a <strong>type-2 inflammatory response</strong>: IL-4, IL-13, IL-31 and the rest.</p>
+        <p>These <strong>cytokines</strong> cause the redness and swelling, and they also suppress the genes that make barrier lipids.</p>
+        <p>So inflammation degrades the barrier further. That is the loop.</p>
+      </div>
+    </div>
+
+    <!-- stage 3 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="stage-tag">Microbes</span>
+        <h3>The bacteria take advantage</h3>
+      </div>
+      <div class="panel panel-plain">
+        <p class="panel-label">In plain terms</p>
+        <p>Your skin is covered in millions of bacteria all the time. That is normal and mostly good, because the harmless ones occupy the space and keep troublemakers out.</p>
+        <p>On eczema skin, <strong>staph</strong> thrives. The wall is damaged, the normal bacteria are struggling, so staph moves in and releases substances that wind the immune system up further.</p>
+        <p>More staph means worse flare. Worse flare means more staph.</p>
+      </div>
+      <div class="panel panel-sci">
+        <p class="panel-label">The science</p>
+        <p>Eczematous skin gets colonised by <strong><em>Staphylococcus aureus</em></strong>, which crowds out commensals and secretes toxins that drive more inflammation.</p>
+        <p>Flares and staph density track each other closely.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE LOOP ================= -->
+  <section class="band">
+    <div class="band-head">
+      <p class="eyebrow">Why it does not settle on its own</p>
+      <h2>The loop</h2>
+    </div>
+
+    <div class="loop-wrap">
+      <svg class="loop-svg" viewBox="0 0 340 300" role="img" aria-label="A three-stage cycle: the wall leaks, which triggers the immune system, whose inflammation shuts down fat production, which makes the wall leak more">
+        <defs>
+          <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="var(--brick)" />
+          </marker>
+        </defs>
+
+        <path class="arc" marker-end="url(#arrowhead)" d="M 222 62 A 120 120 0 0 1 268 172" />
+        <path class="arc" marker-end="url(#arrowhead)" d="M 222 244 A 120 120 0 0 1 118 244" />
+        <path class="arc" marker-end="url(#arrowhead)" d="M 72 172 A 120 120 0 0 1 118 62" />
+
+        <circle class="node-fill" cx="170" cy="52" r="46" />
+        <text class="node-text" x="170" y="47" text-anchor="middle">The wall</text>
+        <text class="node-text" x="170" y="62" text-anchor="middle">leaks</text>
+
+        <circle class="node-fill" cx="278" cy="222" r="46" />
+        <text class="node-text" x="278" y="211" text-anchor="middle">Immune</text>
+        <text class="node-text" x="278" y="226" text-anchor="middle">system</text>
+        <text class="node-text" x="278" y="241" text-anchor="middle">fires</text>
+
+        <circle class="node-fill" cx="62" cy="222" r="46" />
+        <text class="node-text" x="62" y="211" text-anchor="middle">Fat</text>
+        <text class="node-text" x="62" y="226" text-anchor="middle">production</text>
+        <text class="node-text" x="62" y="241" text-anchor="middle">shuts off</text>
+      </svg>
+
+      <div class="loop-note">
+        <p class="pull">Moisturising is not a cosmetic afterthought. You are manually replacing mortar your body has been ordered to stop making.</p>
+        <p>This is why eczema does not simply calm down if left alone, and why treating only when it looks bad means always playing catch-up. The barrier defect is still there between flares.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ITCH ================= -->
+  <section class="itch">
+    <div>
+      <p class="eyebrow">A separate problem, not a symptom</p>
+      <h2>The itch rewires the nerves underneath</h2>
+    </div>
+
+    <div class="itch-grid">
+      <div>
+        <h4>The signal</h4>
+        <p>The message IL-31 lands directly on the nerve endings in your skin and makes them fire "itch". No damage required, just the chemical.</p>
+      </div>
+      <div>
+        <h4>The nerves grow</h4>
+        <p>In long-term eczema, itch nerve endings physically grow longer and reach further up toward the surface. More nerve, closer to the top.</p>
+      </div>
+      <div>
+        <h4>They get twitchy</h4>
+        <p>The threshold drops. A warm room, a jumper, sweat, sometimes nothing at all, now reads as itch.</p>
+      </div>
+      <div>
+        <h4>Scratching backfires</h4>
+        <p>Scratching tears the wall open and releases more itch chemicals. It genuinely makes the itch worse, on a delay.</p>
+      </div>
+    </div>
+
+    <p class="itch-foot">This is a wiring problem, not a self-control problem. Your nerves have been rewired by months or years of inflammation, so telling yourself to stop is fighting your own nervous system. The practical answer is to make scratching harder rather than relying on willpower: cold on the area, nails short, something else to do with your hands.</p>
+  </section>
+
+  <!-- ================= TREATMENTS ================= -->
+  <section class="band">
+    <div class="band-head">
+      <p class="eyebrow">Everything maps back</p>
+      <h2>Which treatment fixes which problem</h2>
+      <p>Once the mechanism has a shape, every product on the shelf has an obvious job.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">The problem</th>
+            <th scope="col">What fixes it</th>
+            <th scope="col">How it works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mortar is missing</td>
+            <td>Moisturiser with ceramides <span class="tag">CeraVe</span></td>
+            <td>Manually adds the fats your skin cannot make</td>
+          </tr>
+          <tr>
+            <td>Wall is leaking</td>
+            <td>Ointments <span class="tag">Vaseline</span></td>
+            <td>A physical seal on top while the wall rebuilds</td>
+          </tr>
+          <tr>
+            <td>Immune system overreacting</td>
+            <td>Steroids, or tacrolimus for eyelids</td>
+            <td>Turns the alarm down</td>
+          </tr>
+          <tr>
+            <td>Too much staph</td>
+            <td>Antimicrobial washes <span class="tag">Dermol</span> <span class="tag">Octenisan</span></td>
+            <td>Knocks the bacterial population back</td>
+          </tr>
+          <tr>
+            <td>Nerves firing itch</td>
+            <td>Cold, antihistamines at night, short nails</td>
+            <td>Breaks the itch and scratch cycle</td>
+          </tr>
+          <tr>
+            <td>None of the above holding</td>
+            <td>Dupilumab and similar injections</td>
+            <td>Blocks IL-4 and IL-13 from being heard at all. The message is sent, nothing receives it, the inflammation stops</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= CLOSER ================= -->
+  <section class="closer">
+    <p class="eyebrow">The one sentence version</p>
+    <p class="sentence">Your skin wall is built with <span class="hl">weak mortar</span>, so things get in, your immune system <span class="hl">overreacts</span> to them, and its overreaction <span class="hl">stops you making more mortar</span>.</p>
+    <p class="tail">Everything you do is either patching the wall, calming the alarm, or breaking the itch.</p>
+  </section>
+
+  <footer>
+    <p class="byline">Built by <a href="https://www.linkedin.com/in/chriscerra" rel="noopener">Chris Cerra</a>, lifelong eczema survivor.</p>
+    <p class="disclaimer">Not a substitute for a GP or dermatologist, particularly on prescription choice and dosing, and especially for eyelids where getting it wrong has consequences for the eyes.</p>
+  </footer>
+
+</div>
+</body>
+</html>
