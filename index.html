@@ -472,6 +472,148 @@
     white-space: nowrap;
   }
 
+  /* ---------- pitfalls ---------- */
+
+  .pitfalls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .pitfall {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pitfall-tag {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .pitfall h3 {
+    font-family: var(--font-display);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    font-size: 1.22rem;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .pitfall-split {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.2rem;
+  }
+
+  .pitfall-split section { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .pitfall-split h4 {
+    font-family: var(--font-mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .pitfall-split .is-wrong h4 { color: var(--signal); }
+  .pitfall-split .is-right h4 { color: var(--science); }
+
+  .pitfall-split p { margin: 0; font-size: 0.94rem; line-height: 1.55; }
+
+  .pitfall-note {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  /* ---------- the eyelid warning ---------- */
+
+  .warning {
+    border: 2px solid var(--signal);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: clamp(1.5rem, 4vw, 2.4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .warning-head { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .warning-head .eyebrow { color: var(--signal); }
+
+  .warning-head h3 {
+    font-family: var(--font-display);
+    font-weight: 780;
+    letter-spacing: -0.03em;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .warning-lede {
+    margin: 0;
+    max-width: 56ch;
+    font-size: 1.02rem;
+  }
+
+  .risks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    padding: 1.3rem 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .risk { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .risk-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color: var(--signal);
+    margin: 0;
+  }
+
+  .risk p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--muted); }
+
+  .warning-out { display: flex; flex-direction: column; gap: 0.7rem; }
+
+  .warning-out h4 {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--science);
+    margin: 0;
+  }
+
+  .warning-out p { margin: 0; max-width: 60ch; font-size: 0.97rem; }
+
+  .balance {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--muted);
+    max-width: 62ch;
+    font-style: italic;
+  }
+
   /* ---------- closer ---------- */
 
   .closer {
@@ -868,6 +1010,94 @@
         </tbody>
       </table>
     </div>
+  </section>
+
+  <!-- ================= PITFALLS ================= -->
+  <section class="band">
+    <div class="band-head">
+      <p class="eyebrow">Where it commonly goes wrong</p>
+      <h2>The mistakes that cost people months</h2>
+      <p>Two of these waste time. The third can cost you your sight, and it is the one most people have never been warned about.</p>
+    </div>
+
+    <div class="pitfalls">
+
+      <article class="pitfall">
+        <p class="pitfall-tag">Hydrocortisone 1%</p>
+        <h3>"I tried steroids. They didn't work for me."</h3>
+        <div class="pitfall-split">
+          <section class="is-wrong">
+            <h4>What usually happened</h4>
+            <p>A nervous smear, once a day, stopped the moment the redness faded. The inflammation underneath had not settled, so it rebounded within days.</p>
+            <p>Or the strength was wrong for the place. Over-the-counter 1% is a mild steroid. It is often too weak for thick skin like hands, elbows and shins, where a stronger one is the correct choice.</p>
+            <p>Or it was applied to dry, unmoisturised skin, so it was fighting a broken barrier the whole time.</p>
+          </section>
+          <section class="is-right">
+            <h4>What actually works</h4>
+            <p>Enough to leave the skin glistening, and continued for a few days after it looks clear, because the inflammation outlasts the redness.</p>
+            <p>Dose by fingertip unit: a line squeezed from the tip of an adult finger to the first crease covers roughly two flat palms of skin.</p>
+            <p>Keep moisturising alongside it, not instead of it. Once settled, applying twice a week to the spots that always flare prevents the next one better than waiting.</p>
+          </section>
+        </div>
+        <p class="pitfall-note">Fear of steroids causes more harm than the steroids do. Under-treating leaves inflammation running, and it is prolonged inflammation that thickens skin and rewires the itch nerves.</p>
+      </article>
+
+      <article class="pitfall">
+        <p class="pitfall-tag">Sudocrem</p>
+        <h3>The cream in every bathroom cupboard, aimed at a different problem.</h3>
+        <div class="pitfall-split">
+          <section class="is-wrong">
+            <h4>Why it disappoints</h4>
+            <p>It was built for nappy rash and minor grazes. The main ingredient, zinc oxide, is drying and astringent. That suits a weeping nappy rash and works directly against dry, cracked eczema.</p>
+            <p>It also contains lanolin and several fragrance-related ingredients, including benzyl benzoate and benzyl cinnamate. All are recognised causes of contact allergy.</p>
+            <p>On skin whose barrier is already broken, those ingredients reach the immune system far more easily, so the odds of reacting to it are higher than on normal skin.</p>
+          </section>
+          <section class="is-right">
+            <h4>Where it earns its place</h4>
+            <p>Short term, on a raw or weeping patch, as a physical barrier while the skin closes over. That is a real job and it does it well.</p>
+            <p>For everyday eczema, a plain ceramide cream and an ointment do more, and contain nothing to react to.</p>
+          </section>
+        </div>
+        <p class="pitfall-note">Its reputation comes from being familiar rather than from being right for this. Never use it on eyelids.</p>
+      </article>
+
+    </div>
+
+    <aside class="warning">
+      <div class="warning-head">
+        <p class="eyebrow">The serious one</p>
+        <h3>Steroid creams on eyelids can damage your eyes</h3>
+      </div>
+
+      <p class="warning-lede">Eyelid skin is around half a millimetre thick, the thinnest on the body. A steroid that is unremarkable on an elbow behaves very differently there, because far more of it passes straight through. Cream also migrates along the lid margin and into the eye itself.</p>
+
+      <div class="risks">
+        <div class="risk">
+          <p class="risk-name">Raised pressure inside the eye</p>
+          <p>Steroids can push up the fluid pressure in the eyeball. Roughly one person in three responds this way, and there is no way to know in advance whether you are one of them.</p>
+        </div>
+        <div class="risk">
+          <p class="risk-name">Glaucoma</p>
+          <p>Sustained pressure damages the optic nerve, the cable carrying sight to the brain. It is painless and silent until vision is already going, and the loss does not come back.</p>
+        </div>
+        <div class="risk">
+          <p class="risk-name">Cataract</p>
+          <p>Prolonged steroid exposure is linked to clouding at the back of the lens, blurring vision and causing glare around lights.</p>
+        </div>
+        <div class="risk">
+          <p class="risk-name">Thinning skin</p>
+          <p>The lid becomes fragile, crepey and papery, with small blood vessels showing through. Thin skin is the exact opposite of what eczema treatment is for.</p>
+        </div>
+      </div>
+
+      <div class="warning-out">
+        <h4>What to use instead</h4>
+        <p>This is precisely why calcineurin inhibitors exist. Tacrolimus and pimecrolimus calm the same inflammation without thinning skin and without raising eye pressure, which is what made them the standard choice for eyelids. Both are prescription only, so eyelid eczema is a reason to see a doctor rather than a shelf to solve it from.</p>
+        <p>They commonly sting or burn for the first few days, then stop. People abandon them on day two believing they are reacting to them.</p>
+      </div>
+
+      <p class="balance">This is not an argument against steroids. Doctors do prescribe short, supervised courses of mild steroid on eyelids, and they work. The danger is a potent one, used unsupervised, for weeks. Note that over-the-counter hydrocortisone boxes carry an explicit warning against use on the face and near the eyes.</p>
+    </aside>
   </section>
 
   <!-- ================= CLOSER ================= -->
